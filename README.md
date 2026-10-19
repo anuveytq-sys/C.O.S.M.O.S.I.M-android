@@ -2,134 +2,113 @@
 
 <img src="docs/icon.png" width="140" alt="C.O.S.M.O.S.I.M icon"/>
 
-# C.O.S.M.O.S.I.M &nbsp;·&nbsp; Android
+# C.O.S.M.O.S.I.M · Android
 
-### A futuristic, voice-driven **JARVIS HUD** in your pocket
+### A 3D realistic space simulator — now packaged as an Android APK
 
-*Neural Matrix · AI Analytics · Jarvis Core · Voice Analyzer · Sensor Array*
+**C.O.S.M.O.S.I.M** (COSMOSIM) is the Android APK version of the C.O.S.M.O.S.I.M space-simulation website. It brings the project's interactive 3D space environment, realistic simulation systems, Destroyer Mode and Interstellar Flight Simulator Mode to Android.
 
 ![Platform](https://img.shields.io/badge/Platform-Android-3DDC84?style=for-the-badge&logo=android&logoColor=white)
 ![Min SDK](https://img.shields.io/badge/minSdk-23-00EAFF?style=for-the-badge)
 ![Target SDK](https://img.shields.io/badge/targetSdk-35-0A84FF?style=for-the-badge)
-![Language](https://img.shields.io/badge/Java-WebView-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)
-![AI](https://img.shields.io/badge/Gemini-2.5%20Flash-8E75FF?style=for-the-badge&logo=googlegemini&logoColor=white)
 ![License](https://img.shields.io/badge/License-MIT-00C853?style=for-the-badge)
 
 </div>
 
 ---
 
-## Table of Contents
+## 🌌 About C.O.S.M.O.S.I.M
 
-1. [Overview](#-overview)
-2. [Preview](#-preview)
-3. [Features](#-features)
-4. [How It Works](#-how-it-works)
-5. [Supported Apps & Voice Commands](#-supported-apps--voice-commands)
-6. [Project Structure](#-project-structure)
-7. [Getting Started](#-getting-started)
-8. [Build an APK](#-build-an-apk)
-9. [Configuration](#-configuration)
-10. [Permissions](#-permissions)
-11. [Customization](#-customization)
-12. [Troubleshooting](#-troubleshooting)
-13. [Roadmap](#-roadmap)
-14. [Contributing](#-contributing)
-15. [License](#-license)
+C.O.S.M.O.S.I.M is a **3D space simulator and interactive space experience** designed to bring a large-scale cosmic environment to the screen.
+
+This repository is the **Android APK version of the C.O.S.M.O.S.I.M website**. The Android project is intended to provide the same core COSMOSIM experience in an installable Android application rather than being a separate JARVIS assistant project.
+
+The simulator focuses on exploring space, interacting with large-scale 3D environments and experiencing different simulation modes from the COSMOSIM web version.
+
+> **Important:** C.O.S.M.O.S.I.M-android is the Android version of COSMOSIM. It should not be described as a JARVIS WebView application or as a generic voice-assistant wrapper.
 
 ---
 
-## 🌌 Overview
+## 🚀 Main Simulation Experiences
 
-**C.O.S.M.O.S.I.M Android** is the native Android shell for the **JARVIS-WEB** assistant. It wraps the live JARVIS HUD in a hardware-accelerated `WebView`, adds the Android permissions a voice assistant needs (microphone, camera, location, file access) and launches installed apps directly from commands.
+### 🌍 3D Realistic Space Simulation
 
-It does **not** modify the JARVIS-WEB web repository. Android-specific behaviour is injected at runtime by the wrapper, so the web UI and the app stay in sync.
+Experience a large interactive 3D space environment with a focus on realistic-looking celestial objects, deep-space surroundings and immersive movement through the simulation.
 
-> **Note:** this is an **online** wrapper. The HUD is loaded from GitHub Pages, the backend runs on Render and AI replies come from Gemini, so an internet connection is required.
+### 🛰️ Space Exploration
 
----
+Explore the simulated universe and interact with its different celestial and space-simulation elements.
 
-## 🖼 Preview
+### 💥 Destroyer Mode
 
-<div align="center">
+A dedicated simulation/gameplay mode focused on high-intensity space scenarios and large-scale destruction effects inside the simulated environment.
 
-<img src="docs/hud-preview.jpg" width="320" alt="JARVIS HUD running on Android"/>
+### 🚀 Interstellar Flight Simulator Mode
 
-*The JARVIS HUD: command input with VOICE and SEND controls sits clear of the system navigation bar.*
+Fly through the simulated interstellar environment and experience long-distance space travel in a dedicated flight-simulation mode.
 
-</div>
+### 🌌 Multiple Space Environments
 
----
+COSMOSIM is designed to provide different environments and scenarios rather than being limited to a single static 3D scene.
 
-## ✨ Features
+### 📱 Android APK Experience
 
-| | Feature | Details |
-|---|---|---|
-| 🎙 | **Voice control** | Microphone permission is handled natively so the web voice features work inside the app |
-| ⌨️ | **Command panel** | Type commands and press **SEND**, or tap **VOICE** to speak |
-| 🧠 | **Gemini 2.5 Flash** | Direct personal-key Gemini requests are pinned to `gemini-2.5-flash` |
-| 🚀 | **Native app launching** | Opens YouTube, Spotify, WhatsApp and more in their Android apps when installed |
-| 🌐 | **Web fallback** | If an app is missing, the web version opens inside the WebView |
-| 📷 | **Camera & files** | Camera access and a file chooser are supported |
-| 📍 | **Location** | Geolocation is enabled for the HUD |
-| 📱 | **Safe layout** | The page respects the status bar, navigation bar, display cutouts and on-screen keyboard |
-| 🔌 | **JavaScript bridge** | `AndroidJARVIS.open(url)` lets the web UI trigger native launches |
-| 🎨 | **Custom icon** | Standard, round and adaptive launcher icons |
-| ↩️ | **Smart back button** | Navigates back in the WebView, then exits |
-| 🌑 | **Dark system bars** | Matches the HUD colour `#00040A` |
+The goal of this repository is to package the COSMOSIM website experience for Android so it can be launched and used as an installable APK.
 
 ---
 
-## ⚙️ How It Works
+## 🧭 Core Modes
 
-```
-┌──────────────────────────┐
-│   Android App (Java)     │
-│  ┌────────────────────┐  │      ┌────────────────────────┐
-│  │      WebView       │──┼────► │ GitHub Pages: JARVIS-WEB│
-│  └─────────┬──────────┘  │      └────────────────────────┘
-│            │             │      ┌────────────────────────┐
-│  UI patch (assets) ──────┼────► │ Render backend  /api/… │
-│  Permission handling     │      └────────────────────────┘
-│  Native app launcher     │      ┌────────────────────────┐
-└──────────────────────────┘      │ Gemini 2.5 Flash API   │
-                                  └────────────────────────┘
-```
-
-1. `MainActivity` creates the `WebView` and loads the live JARVIS-WEB URL with the backend passed as the `api` parameter.
-2. A request for `jarvis-ui-patch.js` is intercepted and served from `assets/jarvis-ui-patch-gemini25.js`.
-3. The patch adjusts bridge-panel spacing, pins Gemini to 2.5 Flash and intercepts "open …" commands.
-4. Links are routed through `openNativeOrWeb()`, which tries the installed app first and falls back to the web.
-
----
-
-## 🗣 Supported Apps & Voice Commands
-
-Say or type commands such as:
-
-```
-open youtube
-launch spotify
-go to google maps
-open gmail
-show calendar
-```
-
-| Category | Apps |
+| Mode | Description |
 |---|---|
-| **Google** | YouTube, Google, Maps, Gmail, Drive, Photos, Docs, Sheets, Slides, Calendar, Meet, Translate |
-| **Media** | Spotify, Netflix |
-| **Work** | Microsoft Teams, Outlook, OneDrive, Notion, Slack, Zoom |
-| **Social** | WhatsApp, Instagram, Facebook / Messenger, Telegram, X (Twitter), Reddit, Discord |
-| **Shopping** | Amazon |
+| 🌌 **3D Space Simulator** | Explore an interactive 3D cosmic environment |
+| 💥 **Destroyer Mode** | Experience a dedicated large-scale space destruction simulation mode |
+| 🚀 **Interstellar Flight Simulator** | Pilot through the simulated interstellar environment |
+| 🛰️ **Space Exploration** | Explore and interact with the available simulated space elements |
 
-Also supported: `open browser`, `open web browser`, `open internet`.
+---
+
+## 🌐 Website → Android APK
+
+The relationship between the two projects is simple:
+
+```text
+┌──────────────────────────────────────┐
+│          C.O.S.M.O.S.I.M             │
+│       3D Space Simulator Website     │
+└──────────────────┬───────────────────┘
+                   │
+                   │ Android version
+                   ▼
+┌──────────────────────────────────────┐
+│       C.O.S.M.O.S.I.M-android        │
+│            Installable APK           │
+└──────────────────────────────────────┘
+```
+
+The Android repository exists to bring the COSMOSIM website/project to Android as an APK while preserving the project's space-simulation identity and core experience.
+
+---
+
+## ✨ Project Highlights
+
+- 🌌 3D space simulation
+- 🌍 Realistic-looking cosmic environments
+- 🛰️ Interactive space and celestial simulation
+- 🚀 Interstellar flight simulator mode
+- 💥 Destroyer mode
+- 🌠 Large-scale space environments
+- 📱 Android APK packaging
+- 🎮 Simulation-oriented controls and interaction
+- 🔭 Immersive deep-space experience
 
 ---
 
 ## 📁 Project Structure
 
-```
+The Android project contains the native Android packaging required to build COSMOSIM as an APK.
+
+```text
 C.O.S.M.O.S.I.M-android/
 ├── app/
 │   ├── build.gradle
@@ -137,14 +116,9 @@ C.O.S.M.O.S.I.M-android/
 │   └── src/main/
 │       ├── AndroidManifest.xml
 │       ├── assets/
-│       │   └── jarvis-ui-patch-gemini25.js   # runtime UI + Gemini + launcher patch
-│       ├── java/com/anuveytq/jarvisweb/
-│       │   └── MainActivity.java             # WebView, permissions, insets, launcher
+│       ├── java/
 │       └── res/
-│           ├── mipmap-*/                     # launcher icons
-│           ├── mipmap-anydpi-v26/            # adaptive icons
-│           └── values/                       # colors, theme
-├── docs/                                     # README images
+├── docs/
 ├── build.gradle
 ├── settings.gradle
 ├── gradle.properties
@@ -152,106 +126,139 @@ C.O.S.M.O.S.I.M-android/
 └── README.md
 ```
 
+The exact simulation implementation and assets may evolve as the Android version is brought into closer alignment with the COSMOSIM website.
+
 ---
 
-## 🚀 Getting Started
+## 🛠️ Getting Started
 
 ### Requirements
 
 - **Android Studio** (recent stable version)
 - **JDK 17**
-- An Android device or emulator running **Android 6.0 (API 23)** or newer
-- Your own **Gemini API key** (entered in JARVIS Settings)
+- Android device or emulator running **Android 6.0 (API 23)** or newer
+- A working Android SDK installation
 
-### Run it
+### Clone the repository
 
 ```bash
 git clone https://github.com/anuveytq-sys/C.O.S.M.O.S.I.M-android.git
 cd C.O.S.M.O.S.I.M-android
 ```
 
-1. Open the folder in **Android Studio**.
-2. Let **Gradle sync** finish.
-3. Connect a device (or start an emulator) and press ▶ **Run**.
-4. Allow the microphone, camera and location permissions when asked.
+### Open in Android Studio
+
+1. Open the cloned project in Android Studio.
+2. Allow Gradle synchronization to complete.
+3. Connect an Android device or start an emulator.
+4. Build and run the application.
 
 ---
 
-## 📦 Build an APK
+## 📦 Build the APK
 
-1. **Build → Generate Signed Bundle / APK…**
-2. Choose **APK** for direct install, or **Android App Bundle** for the Play Store.
-3. Create or select a keystore and finish the wizard.
+From Android Studio:
 
-> Keep your keystore private. `*.jks` and `*.keystore` are already in `.gitignore`.
+1. Open **Build**.
+2. Select **Generate Signed Bundle / APK**.
+3. Select **APK**.
+4. Choose or create a signing keystore.
+5. Complete the build process.
 
----
+The generated APK can then be installed on a compatible Android device.
 
-## 🔧 Configuration
-
-| What | Where | Value |
-|---|---|---|
-| Web app and backend URL | `MainActivity.java` → `JARVIS_URL` | GitHub Pages + `?api=` Render URL |
-| Gemini model | `assets/jarvis-ui-patch-gemini25.js` → `FORCED_GEMINI_MODEL` | `gemini-2.5-flash` |
-| App name | `AndroidManifest.xml` → `android:label` | `JARVIS` |
-| Package id | `app/build.gradle` | `com.anuveytq.jarvisweb` |
-| Bottom spacing | `MainActivity.java` → `extraBottomPx` | `10dp` |
-| Bridge panel position | `jarvis-ui-patch-gemini25.js` | CSS `bottom` values |
+For development builds, Android Studio can also build and install the application directly on a connected device or emulator.
 
 ---
 
-## 🔐 Permissions
+## ⚙️ Android Configuration
 
-| Permission | Why |
+The current Android project is configured with:
+
+| Setting | Value |
 |---|---|
-| `INTERNET` | Load the HUD, backend and Gemini |
-| `RECORD_AUDIO` | Voice commands |
-| `CAMERA` | Camera features in the HUD |
-| `ACCESS_FINE_LOCATION` / `ACCESS_COARSE_LOCATION` | Location-aware features |
+| **Application ID** | `com.anuveytq.jarvisweb` |
+| **Minimum SDK** | Android API 23 |
+| **Target SDK** | Android API 35 |
+| **Compile SDK** | Android API 35 |
+| **Build system** | Gradle / Android Gradle Plugin |
+| **Primary platform** | Android |
 
-Permissions are requested at launch and only granted to the WebView when Android has granted them.
-
----
-
-## 🎨 Customization
-
-- **Change the icon:** replace the PNGs in `res/mipmap-*` and the adaptive foreground, or regenerate them from your own image.
-- **Change the colours:** edit `res/values/colors.xml` and `themes.xml`.
-- **Add an app to the launcher:** add a package in `packageForHost()` (`MainActivity.java`) and an entry in the `apps` list of the patch file.
+> The application ID is an Android project identifier and does not change the identity of the COSMOSIM project itself.
 
 ---
 
-## 🛠 Troubleshooting
+## 🎮 Simulation Direction
 
-| Problem | Fix |
-|---|---|
-| Blank screen | Check your internet connection. The Render backend may need a moment to wake up |
-| Microphone does nothing | Allow the microphone permission in Android Settings → Apps → JARVIS |
-| Command bar hidden or overlapping | Make sure you are on the latest build, which includes the insets fix |
-| App link opens the web version | The native app is not installed or has no compatible intent |
-| Gemini errors | Check the API key in JARVIS Settings |
+C.O.S.M.O.S.I.M-android is intended to evolve alongside the main COSMOSIM website.
+
+The Android version should preserve the project's core identity:
+
+- A **3D space simulator**, not a generic utility application.
+- A **realistic and immersive space environment**.
+- Multiple simulation experiences and modes.
+- A dedicated **Destroyer Mode**.
+- A dedicated **Interstellar Flight Simulator Mode**.
+- A mobile-friendly way to experience COSMOSIM as an APK.
 
 ---
 
-## 🗺 Roadmap
+## 🗺️ Roadmap
 
-- [ ] Offline wake-word support
-- [ ] Optional on-device speech recognition
-- [ ] Home-screen widget
-- [ ] Notification quick actions
-- [ ] More native app shortcuts
+The Android version can continue expanding toward feature parity with the COSMOSIM website, including:
+
+- [ ] More realistic 3D space environments
+- [ ] Expanded celestial-object simulation
+- [ ] More detailed interstellar flight systems
+- [ ] Expanded Destroyer Mode
+- [ ] More space scenarios and missions
+- [ ] Improved Android controls
+- [ ] Performance optimization for mobile GPUs
+- [ ] Improved graphics and visual effects
+- [ ] Better support for different Android screen sizes
+- [ ] Closer feature parity with the COSMOSIM website
+
+---
+
+## 🔧 Troubleshooting
+
+### APK does not build
+
+- Make sure Android Studio has completed Gradle synchronization.
+- Confirm that the required Android SDK is installed.
+- Confirm that JDK 17 is configured for the project.
+- Try **Build → Clean Project**, followed by **Build → Rebuild Project**.
+
+### APK installs but the simulation does not load correctly
+
+Check that the Android implementation and the current COSMOSIM website version are compatible and that any required online resources are reachable.
+
+### Performance is low
+
+3D space simulation can be demanding on mobile hardware. Performance depends on the device GPU, CPU, available memory, display resolution and the complexity of the current COSMOSIM scene.
+
+---
+
+## 🌠 Project Vision
+
+The long-term goal of C.O.S.M.O.S.I.M is to create an increasingly immersive **3D space simulation platform** that can be experienced across the web and Android.
+
+The Android APK is an important part of that goal: it brings the COSMOSIM experience from the website to mobile devices while continuing to expand the simulator with more realistic environments, flight simulation, interactive space systems and additional gameplay/simulation modes.
 
 ---
 
 ## 🤝 Contributing
 
-Contributions are welcome.
+Contributions and improvements to the Android version are welcome.
 
-1. Fork the repository
-2. Create a branch: `git checkout -b feature/my-feature`
-3. Commit: `git commit -m "Add my feature"`
-4. Push: `git push origin feature/my-feature`
-5. Open a Pull Request
+1. Fork the repository.
+2. Create a feature branch.
+3. Make your changes.
+4. Test the Android build.
+5. Commit your changes.
+6. Open a Pull Request.
+
+When contributing, keep the Android version aligned with the overall C.O.S.M.O.S.I.M vision and avoid unrelated changes.
 
 ---
 
@@ -261,8 +268,10 @@ Released under the **MIT License**. See [`LICENSE`](LICENSE).
 
 <div align="center">
 
-**Built with ⚡ by [anuveytq-sys](https://github.com/anuveytq-sys)**
+**C.O.S.M.O.S.I.M · Android**
 
-*If you like this project, give it a ⭐*
+*3D Space Simulation · Destroyer Mode · Interstellar Flight Simulator*
+
+**Built by [anuveytq-sys](https://github.com/anuveytq-sys)**
 
 </div>
